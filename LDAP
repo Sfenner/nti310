@@ -70,38 +70,38 @@ ldapmodify -Y EXTERNAL -H ldapi:/// -f monitor.ldif
 
 #Generates Certs
 
-openssl req -new -x509 -nodes -out /etc/openldap/certs/nti310ldapcert.pem -keyout /etc/opentdap/certs/nti310ldapkey.pem -days 3
+openssl req -new -x509 -nodes -out /etc/openldap/certs/nti310ldapcert.pem -keyout /etc/openldap/certs/nti310ldapkey.pem -days 365 -subj "/C=US/ST=WA/L=Seattle/O=SCC/OU=IT/CN=nti310.local"
 
-chown -R ldap, /etc/openldap/certs/nti*.pem
+chown -R ldap. /etc/openldap/certs/nti*.pem
 
 echo -e "dn: cn=config
 changetype: modify
 replace: olcTLSCertificateFile
-olcTLSCertificateFile: /etc/openldap/certs/nti310ldapcert.pem 
+olcTLSCertificateFile: /etc/openldap/certs/nti310ldapcert.pem
 \n
 dn: cn=config
 changetype: modify
 replace: olcTLSCertificateKeyFile
-olcTLSCertificateKeyFile: /etc/openldap/certs/nti310ldapkey.pem” > certs.Idif
+olcTLSCertificateKeyFile: /etc/openldap/certs/nti310ldapkey.pem” > certs.ldif
 
 
 
-ldapmodify -Y EXTERNAL -H ldapi:/// -f corts.ldif
+ldapmodify -Y EXTERNAL -H ldapi:/// -f certs.ldif
 
 # Test to see if cert config works 
 slaptest -u
 echo "it works"
 
-unalias cp
 
-ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schoma/cosine.ldif
+ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/cosine.ldif
 ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/nis.ldif
 ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/inetorgperson.ldif
 
 #Creates group and people structure base
 
+
 echo -e "dn: dc=nti310,dc=local
-de: nti310
+dc: nti310
 objectClass: top
 objectClass: domain
 \n
@@ -120,6 +120,6 @@ ou: Group" > base.ldif
 
 setenforce 0
 
-ldapadd -x -W -D "cn-ldapadm,dc=nti310,dc=local" -f base.ldif -y /root/ldap_admin_pass 
+ldapadd -x -W -D "cn=ldapadm,dc=nti310,dc=local" -f base.ldif -y /root/ldap_admin_pass 
 
 systemctl restart httpd
