@@ -59,7 +59,7 @@ olcRootPW: Snewhash" > db.ldif
 
 ldapmodify -Y EXTERNAL -H ldapi:/// -f db.ldif
 
-#Auth restriction
+# Auth restriction
 
 echo 'dn: olcDatabase={l}monitor,cn-config 
 changetype: modify 
