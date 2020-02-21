@@ -30,7 +30,7 @@ python manage.py startapp Cars
 echo "class Specs(models.Model):
     name = models.CharField(max_length = 20)
     price = models.DecimalField(max_digits=8, decimal_places=2)
-    weight = models.PositiveIntergerField()" >> Cars/models.py
+    weight = models.PositiveIntegerField()" >> Cars/models.py
   
 # put sed into the INSTALLED_APPS variable
 sed -i "40i \ \ \ \ 'Cars'," nti310/settings.py
