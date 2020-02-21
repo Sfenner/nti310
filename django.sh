@@ -39,3 +39,5 @@ python manage.py makemigrations Cars
 python manage.py migrate Cars
 echo "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('admin', 'admin@newproject.com','NTI300NTI300')" | python manage.py shell   
 python manage.py runserver 0.0.0:8000
+python manage.py makemigrations
+python manage.py migrate
