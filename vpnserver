@@ -80,4 +80,5 @@ cp /etc/openvpn/easy-rsa/keys/ca.crt /tmp/client
 cp /etc/openvpn/easy-rsa/keys/client.crt /tmp/client
 cp /etc/openvpn/easy-rsa/keys/client.key /tmp/client
 cp /etc/openvpn/myvpn.tlsauth /tmp/client
+cd /tmp
 tar cvf client.tar client/
