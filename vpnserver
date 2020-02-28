@@ -24,11 +24,11 @@ openvpn --genkey --secret /etc/openvpn/myvpn.tlsauth
 mkdir /etc/openvpn/easy-rsa/keys
 # vim /etc/openvpn/easy-rsa/vars
 yum install bind-utils
-# our ip's resolve to http://35.222.224.173.bc.googleusercontent.com/
+# our ip's resolve to http://172.31.11.31.bc.googleusercontent.com/
 # you can find this using nslookup
 # so this becomes our CN
 # vim /etc/openvpn/easy-rsa/vars
-# export KEY_CN="35.222.224.173.bc.googleusercontent.com"
+# export KEY_CN="191.126.208.35.bc.googleusercontent.com."
 # export KEY_NAME="server"
 # export KEY_OU="College
 
@@ -60,7 +60,7 @@ firewall-cmd --list-services --zone=trusted
 firewall-cmd --add-masquerade
 firewall-cmd --permanent --add-masquerade
 firewall-cmd --query-masquerade
-SHARK=$(ip route get 8.8.8.8 | awk 'NR=1 {print $(NF-2)}')
+SHARK=$(ip route get 8.8.8.8 | awk 'NR==1 {print $(NF-2)}')
 firewall-cmd --permanent --direct --passthrough ipv4 -t nat -A POSTROUTING -s 10.8.0.0/24 -o $SHARK -j MASQUERADE
 firewall-cmd --reload
 # vim /etc/sysctl.conf
