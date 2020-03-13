@@ -24,3 +24,4 @@ yum -y install net-tools
 
 # use if config to find your ip address you will use this for client
 
+echo "*.info;mail.none;authpriv.none;cron.none   @10.128.0.5" >> /etc/rsyslog.conf && systemctl restart rsyslog.service
