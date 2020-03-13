@@ -1,3 +1,4 @@
+#!/bin/bash
 
 #syslog
 gcloud compute instances create rsyslog-server2 \
