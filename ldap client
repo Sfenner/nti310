@@ -39,4 +39,15 @@ ldap-auth-config        ldap-auth-config/ldapns/ldap_version    select  3
 ldap-auth-config        ldap-auth-config/rootbinddn     string  cn=manager,dc=example,dc=net" > /tap/ldap_debconf
 
 while read line; do echo "$line" | debconf-set-selections; done < /tmp/ldap_debconf
+
+apt-get install nfs-client
+
+showmount -e 10.128.0.30     #where $ipaddress is the ip of your nfs server
+mkdir /mnt/test
+echo "10.128.0.30:/var/nfsshare/testing        /mnt/test       nfs     defaults 0 0" >> /etc/fstab
+mount -a
+#*profit*
 echo "*.info;mail.none;authpriv.none;cron.none   @10.128.0.5" >> /etc/rsyslog.conf && systemctl restart rsyslog.service
+
+
+
