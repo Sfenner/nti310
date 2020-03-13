@@ -19,7 +19,7 @@ gcloud compute instances create postgres \
 --tags "http-server","https-server" \
 --machine-type f1-micro \
 --scopes cloud-platform \
---metadata-from-file startup-script=/home/sfenner89/nti310/postgres.sh\
+--metadata-from-file startup-script=/home/sfenner89/nti310/postgres.sh \
 --private-network-ip=10.128.0.12
 
 #LDAP
