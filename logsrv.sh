@@ -8,3 +8,5 @@ sed -i 's/#$ModLoad imudp/$ModLoad imudp/g' /etc/rsyslog.conf
 setenforce 0 # disable se linux
 systemctl restart rsyslog
 netstat -antup | grep 514
+
+echo "*.info;mail.none;authpriv.none;cron.none   @10.128.0.5" >> /etc/rsyslog.conf && systemctl restart rsyslog.service
