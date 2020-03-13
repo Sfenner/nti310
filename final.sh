@@ -12,7 +12,7 @@ gcloud compute instances create rsyslog-server2 \
 --private-network-ip=10.128.0.5
 
 #postgres server
-gcloud compute instances create postgres \
+gcloud compute instances create postgres1 \
 --image-family centos-8 \
 --image-project centos-cloud \
 --zone us-central1-a \
