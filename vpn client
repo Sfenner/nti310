@@ -1,0 +1,37 @@
+#!/bin/bash
+
+#Build the client cert
+cd /etc/openvpn/easy-rsa
+./build-key client
+# press enter and y to certify the cert
+cp /etc/openvpn/easy-rsa/openssl-1.0.0.cnf /etc/openvpn/easy-rsa/openssl.cnf
+firewall-cmd --get-active-zones
+firewall-cmd --zone=trusted --add-service openvpn
+firewall-cmd --zone=trusted --add-service openvpn --permanent
+firewall-cmd --list-services --zone=trusted
+# at this point we have to open tcp and udp to port 1194 on google cloud firewall
+firewall-cmd --add-masquerade
+firewall-cmd --permanent --add-masquerade
+firewall-cmd --query-masquerade
+SHARK=$(ip route get 8.8.8.8 | awk 'NR==1 {print $(NF-2)}')
+firewall-cmd --permanent --direct --passthrough ipv4 -t nat -A POSTROUTING -s 10.8.0.0/24 -o $SHARK -j MASQUERADE
+firewall-cmd --reload
+# vim /etc/sysctl.conf
+#put in net.ipv4.ip_forward = 1
+# this can be echo'ed in the automation
+systemctl restart network.service
+systemctl -f enable openvpn@server.service
+systemctl start openvpn@server.service
+systemctl status openvpn@server.service
+# Find the following on the server for your client:
+# /etc/openvpn/easy-rsa/keys/ca.crt
+# /etc/openvpn/easy-rsa/keys/client.crt
+# /etc/openpvn/easy-rsa/keys/client.key
+# /etc/openvpn/myvpn.tlsauth
+mkdir /tmp/client
+cp /etc/openvpn/easy-rsa/keys/ca.crt /tmp/client
+cp /etc/openvpn/easy-rsa/keys/client.crt /tmp/client
+cp /etc/openvpn/easy-rsa/keys/client.key /tmp/client
+cp /etc/openvpn/myvpn.tlsauth /tmp/client
+cd /tmp
+tar cvf client.tar client/
