@@ -12,14 +12,14 @@ gcloud compute instances create rsyslog-server2 \
 --private-network-ip=10.128.0.5
 
 #postgres server
-gcloud compute instances create LDAP2 \
+gcloud compute instances create postgres \
 --image-family centos-8 \
 --image-project centos-cloud \
 --zone us-central1-a \
 --tags "http-server","https-server" \
 --machine-type f1-micro \
 --scopes cloud-platform \
---metadata-from-file startup-script=/home/sfenner89/nti310/postgres_on_centos8.sh\
+--metadata-from-file startup-script=/home/sfenner89/nti310/postgres.sh\
 --private-network-ip=10.128.0.12
 
 #LDAP
