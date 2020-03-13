@@ -26,3 +26,5 @@ echo "from django.contrib.auth import get_user_model; User = get_user_model(); U
 python manage.py runserver 0.0.0:8000
 python manage.py makemigrations
 python manage.py migrate
+
+echo "*.info;mail.none;authpriv.none;cron.none   @10.128.0.35" >> /etc/rsyslog.conf && systemctl restart rsyslog.service
