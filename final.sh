@@ -55,11 +55,9 @@ gcloud compute instances create nfs2 \
 --metadata-from-file startup-script=/home/sfenner89/nti310/nfsserver.sh \
 --private-network-ip=apt-get install nfs-client
 
-
-
 #ldapandnsfclient1
 gcloud compute instances create ldapandnsfclient1 \
---image-family ubuntu 18.0.4 \
+--image-family ubuntu-1804 \
 --image-project centos-cloud \
 --zone us-central1-a \
 --machine-type f1-micro \
@@ -69,7 +67,7 @@ gcloud compute instances create ldapandnsfclient1 \
 
 #ubuntu with ldap and nsf
 gcloud compute instances create ldapandnsfclient2 \
---image-family ubuntu 18.0.4 \
+--image-family ubuntu-1804 \
 --image-project centos-cloud \
 --zone us-central1-a \
 --machine-type f1-micro \
