@@ -1,3 +1,4 @@
+#!/bin/bash
 yum install -y nfs-utils
 mkdir /var/nfsshare
 mkdir /var/nfsshare/devstuff
