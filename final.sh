@@ -53,7 +53,7 @@ gcloud compute instances create nfs2 \
 --machine-type f1-micro \
 --scopes cloud-platform \
 --metadata-from-file startup-script=/home/sfenner89/nti310/nfsserver.sh \
---private-network-ip=apt-get install nfs-client
+--private-network-ip=10.128.0.12
 
 #ldapandnsfclient1
 gcloud compute instances create ldapandnsfclient1 \
