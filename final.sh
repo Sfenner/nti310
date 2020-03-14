@@ -59,7 +59,7 @@ sleep 5m
 #ldapandnsfclient1
 gcloud compute instances create ldapandnsfclient1 \
 --image-family ubuntu-1804 \
---image-project centos-cloud \
+--image-project ubuntu-os-cloud \
 --zone us-central1-a \
 --machine-type f1-micro \
 --scopes cloud-platform \
@@ -69,7 +69,7 @@ gcloud compute instances create ldapandnsfclient1 \
 #ubuntu with ldap and nsf
 gcloud compute instances create ldapandnsfclient2 \
 --image-family ubuntu-1804 \
---image-project centos-cloud \
+--image-project ubuntu-os-cloud \
 --zone us-central1-a \
 --machine-type f1-micro \
 --scopes cloud-platform \
