@@ -53,8 +53,8 @@ gcloud compute instances create nfs2 \
 --metadata-from-file startup-script=/home/sfenner89/nti310/nfsserver.sh \
 --private-network-ip=10.128.0.12
 
-#sleep for 5 minutes allowing servers to boot before clients
-sleep 5m
+#sleep for 1 minute allowing servers to boot before clients
+sleep 1m
 
 #ldapandnsfclient1
 gcloud compute instances create ldapandnsfclient1 \
