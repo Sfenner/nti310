@@ -10,6 +10,8 @@ gcloud compute instances create rsyslog-server2 \
 --metadata-from-file startup-script=/home/sfenner89/nti310/logsrv.sh \
 --private-network-ip=10.128.0.5
 
+sleep 20s
+
 #postgres server
 gcloud compute instances create postgres1 \
 --image-family centos-8 \
@@ -20,6 +22,8 @@ gcloud compute instances create postgres1 \
 --scopes cloud-platform \
 --metadata-from-file startup-script=/home/sfenner89/nti310/postgres.sh \
 --private-network-ip=10.128.0.12
+
+sleep 20s
 
 #LDAP
 gcloud compute instances create ldap2 \
@@ -32,6 +36,8 @@ gcloud compute instances create ldap2 \
 --metadata-from-file startup-script=/home/sfenner89/nti310/LDAP-automated.sh \
 --private-network-ip=10.128.0.7
 
+sleep 20s
+
 #Django
 gcloud compute instances create django2 \
 --image-family centos-7 \
@@ -43,6 +49,8 @@ gcloud compute instances create django2 \
 --metadata-from-file startup-script=/home/sfenner89/nti310/django.sh \
 --private-network-ip=10.128.0.8
 
+sleep 20s
+
 #nfs server
 gcloud compute instances create nfs2 \
 --image-family centos-7 \
@@ -53,8 +61,8 @@ gcloud compute instances create nfs2 \
 --metadata-from-file startup-script=/home/sfenner89/nti310/nfsserver.sh \
 --private-network-ip=10.128.0.12
 
-#sleep for 20 seconds allowing servers to boot before clients
-sleep 20s
+#sleep for 3 minutes allowing servers to boot before clients
+sleep 3m
 
 #ldapandnsfclient1
 gcloud compute instances create ldapandnsfclient1 \
