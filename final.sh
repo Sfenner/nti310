@@ -12,18 +12,6 @@ gcloud compute instances create rsyslog-server2 \
 
 sleep 20s
 
-#postgres server
-gcloud compute instances create postgres1 \
---image-family centos-8 \
---image-project centos-cloud \
---zone us-central1-a \
---tags "http-server","https-server" \
---machine-type f1-micro \
---scopes cloud-platform \
---metadata-from-file startup-script=/home/sfenner89/nti310/postgres.sh \
---private-network-ip=10.128.0.12
-
-sleep 20s
 
 #LDAP
 gcloud compute instances create ldap2 \
@@ -37,6 +25,21 @@ gcloud compute instances create ldap2 \
 --private-network-ip=10.128.0.7
 
 sleep 20s
+
+
+#postgres server
+gcloud compute instances create postgres1 \
+--image-family centos-8 \
+--image-project centos-cloud \
+--zone us-central1-a \
+--tags "http-server","https-server" \
+--machine-type f1-micro \
+--scopes cloud-platform \
+--metadata-from-file startup-script=/home/sfenner89/nti310/postgres.sh \
+--private-network-ip=10.128.0.12
+
+sleep 20s
+
 
 #Django
 gcloud compute instances create django2 \
