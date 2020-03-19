@@ -8,7 +8,7 @@ gcloud compute instances create rsyslog-server2 \
 --machine-type f1-micro \
 --scopes cloud-platform \
 --metadata-from-file startup-script=/home/sfenner89/nti310/logsrv.sh \
---private-network-ip=10.128.0.5
+--private-network-ip=10.128.0.10
 
 sleep 20s
 
@@ -22,7 +22,7 @@ gcloud compute instances create ldap2 \
 --machine-type f1-micro \
 --scopes cloud-platform \
 --metadata-from-file startup-script=/home/sfenner89/nti310/LDAP-automated.sh \
---private-network-ip=10.128.0.7
+--private-network-ip=10.128.0.11
 
 sleep 20s
 
@@ -50,7 +50,7 @@ gcloud compute instances create django2 \
 --machine-type f1-micro \
 --scopes cloud-platform \
 --metadata-from-file startup-script=/home/sfenner89/nti310/django.sh \
---private-network-ip=10.128.0.8
+--private-network-ip=10.128.0.13
 
 sleep 20s
 
@@ -62,25 +62,25 @@ gcloud compute instances create nfs2 \
 --machine-type f1-micro \
 --scopes cloud-platform \
 --metadata-from-file startup-script=/home/sfenner89/nti310/nfsserver.sh \
---private-network-ip=10.128.0.12
+--private-network-ip=10.128.0.14
 
-#sleep for 3 minutes allowing servers to boot before clients
-sleep 3m
+#sleep for 30s allowing servers to boot before clients
+sleep 30s
 
 #ldapandnsfclient1
 gcloud compute instances create ldapandnsfclient1 \
---image-family ubuntu-1804 \
---image-project ubuntu-os-cloud \
+--image-family ubuntu-1804-lts \
+--image-project gce-uefi-images  \
 --zone us-central1-a \
 --machine-type f1-micro \
 --scopes cloud-platform \
 --metadata-from-file startup-script=/home/sfenner89/nti310/ldap_client.sh \
---private-network-ip=10.128.0.13
+--private-network-ip=10.128.0.15
 
 #ubuntu with ldap and nsf
 gcloud compute instances create ldapandnsfclient2 \
---image-family ubuntu-1804 \
---image-project ubuntu-os-cloud \
+--image-family ubuntu-1804-lts \
+--image-project gce-uefi-images  \
 --zone us-central1-a \
 --machine-type f1-micro \
 --scopes cloud-platform \
