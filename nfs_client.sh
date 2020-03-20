@@ -1,7 +1,7 @@
 #!/bin/bash
 # from the client (ubuntu machine)
 
-apt-get install nfs-client
+apt-get -y install nfs-client
 
 showmount -e 10.128.0.7     #where $ipaddress is the ip of your nfs server
 mkdir /mnt/test
