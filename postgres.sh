@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo su
+
 yum -y install python2-pip python3-pip python2-devel python3-devel gcc postgresql-server postgresql-devel postgresql-contrib
 
 postgresql-setup initdb
@@ -68,22 +68,7 @@ sudo -u postgres /bin/psql -f /tmp/authfile
 echo "ALTER DATABASE nti310 OWNER
 TO nti310user; " > /tmp/changeowner
 sudo -u postgres /bin/psql -f /tmp/changeowner
+systemctl restart postgresql
 
-#from django
-python manage.py startapp Cars
-echo "class Specs(models.Model):
-    name = models.CharField(max_length = 20)
-    price = models.DecimalField(max_digits=8, decimal_places=2)
-    weight = models.PositiveIntegerField()" >> Cars/models.py
-  
-# put sed into the INSTALLED_APPS variable
-sed -i "40i \ \ \ \ 'Cars'," nti310/settings.py
-
-python manage.py makemigrations Cars
-python manage.py migrate Cars
-echo "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('admin', 'admin@newproject.com','NTI300NTI300')" | python manage.py shell   
-python manage.py runserver 0.0.0:8000
-python manage.py makemigrations
-python manage.py migrate
 
 echo "*.info;mail.none;authpriv.none;cron.none   @10.128.0.35" >> /etc/rsyslog.conf && systemctl restart rsyslog.service
