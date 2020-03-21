@@ -31,6 +31,7 @@ enabled=1" >> /etc/yum.repos.d/local-repo.repo
 yum -y install python-pip python-devel gcc postgresql-devel postgresql-contrib
 pip install --upgrade pip
 pip install virtualenv
+#moved line 38 to 34
 mkdir /opt/nti310
 cd /opt/nti310
 virtualenv nti310env
@@ -39,8 +40,6 @@ pip install django psycopg2
 django-admin.py startproject nti310 .
 #vim /opt/nti310/nti310/setting.py
 perl -i -0pe "BEGIN{undef $/;} s/        'ENGINE':.*db.sqlite3'\),/        'ENGINE': 'django.db.backends.postgresql_psycopg2',\n        'NAME': 'nti310',\n        'USER': 'nti310user',\n        'PASSWORD': 'password',\n        'HOST': 'postgres1',\n        'PORT': '5432',/smg" /opt/nti310/nti310/settings.py
-
-'PASSWORD': 'password',\n        'HOST': 'postgres1',\n        'PORT': '5432',/smg" /opt/nti310/nti310/settings.py
 
 python manage.py startapp Cars
 echo "class Specs(models.Model):
@@ -56,6 +55,5 @@ python manage.py migrate Cars
 python manage.py runserver 0.0.0:8000
 python manage.py makemigrations
 python manage.py migrate
-
 
 echo "*.info;mail.none;authpriv.none;cron.none   @10.128.0.5" >> /etc/rsyslog.conf && systemctl restart rsyslog.service
