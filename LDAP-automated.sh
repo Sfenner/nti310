@@ -65,7 +65,7 @@ echo "we are configuring ldap and ldapadmin"
 
 #Generates and stores new passwd securely
 #newsecret=$(slappasswd -g)
-newsecret="P@ssw0rd1"
+newsecret="password"
 newhash=$(slappasswd -s "$newsecret")
 echo -n "$newsecret" > /root/ldap_admin_pass
 chmod 0600 /root/ldap_admin_pass
