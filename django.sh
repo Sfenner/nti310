@@ -31,7 +31,6 @@ enabled=1" >> /etc/yum.repos.d/local-repo.repo
 yum -y install python-pip python-devel gcc postgresql-devel postgresql-contrib
 pip install --upgrade pip
 pip install virtualenv
-#moved line 38 to 34
 mkdir /opt/nti310
 cd /opt/nti310
 virtualenv nti310env
