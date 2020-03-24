@@ -8,7 +8,7 @@ gcloud compute instances create rsyslog-server2 \
 --machine-type f1-micro \
 --scopes cloud-platform \
 --metadata-from-file startup-script=/home/sfenner89/nti310/logsrv.sh \
---private-network-ip=10.128.0.10
+--private-network-ip=10.128.0.5
 
 sleep 20s
 
